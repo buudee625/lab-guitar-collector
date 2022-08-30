@@ -1,5 +1,13 @@
 {% extends 'base.html' %} {% block content %}
 <div class="container mt-4 col-sm-8 offset-md-2">
+  {% if object %}
+  <h2 class="py4">
+    Edit
+    <span class="text-primary">{{object.brand}}</span>
+  </h2>
+  {% else %}
+  <h2 class="py4">Add A Guitar</h2>
+  {% endif %}
   <form action="" method="POST">
     {% csrf_token %}
     <table class="table">
@@ -7,8 +15,18 @@
       {{ form.as_table }}
     </table>
     <div class="d-flex justify-content-end">
+      {% if object %}
+      <button class="btn btn-success mx-2 my-2" type="Submit">Edit</button>
+      <a
+        class="btn btn-outline-danger mx-2 my-2"
+        href="{% url 'detail' object.id %}"
+      >
+        Cancel
+      </a>
+      {% else %}
       <button class="btn btn-success mx-2 my-2" type="Submit">Add</button>
-      <button class="btn btn-outline-danger mx-2 my-2">Cancel</button>
+      <a class="btn btn-outline-danger mx-2 my-2" href="/guitars/">Cancel</a>
+      {% endif %}
     </div>
   </form>
 </div>
