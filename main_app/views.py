@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from .models import Guitar
-from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 # Create your views here.
@@ -19,9 +18,6 @@ def guitar_index(req):
 def guitar_detail(req, gtr_id):
     guitar = Guitar.objects.get(id=gtr_id)
     return render(req, 'guitars/detail.html', {'guitar': guitar})
-
-class GtrList(ListView):
-    model = Guitar
 
 class GtrCreate(CreateView):
     model = Guitar

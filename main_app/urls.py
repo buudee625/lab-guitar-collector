@@ -7,6 +7,6 @@ urlpatterns = [
     path('guitars/', views.guitar_index, name='index'),
     path('guitars/<int:gtr_id>/', views.guitar_detail, name='detail'),
     path('guitars/create/', views.GtrCreate.as_view(), name='gtr_create'),
-    path('guitars/<int:gtr_id>/update/', views.GtrUpdate.as_view(), name='gtr_update'),
-    path('guitars/<int:gtr_id>/delete/', views.GtrDelete.as_view(), name='gtr_delete'),
+    path('guitars/<int:pk>/update/', views.GtrUpdate.as_view(), name='gtr_update'),
+    path('guitars/<int:pk>/delete/', views.GtrDelete.as_view(), name='gtr_delete'),
 ]
