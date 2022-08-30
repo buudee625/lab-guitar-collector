@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container mt-4 col-sm-8 offset-md-2">
+  <form action="" method="POST">
+    {% csrf_token %}
+    <table class="table">
+      <!-- Render the inputs inside of <tr>s & <td>s -->
+      {{ form.as_table }}
+    </table>
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-success mx-2 my-2" type="Submit">Add</button>
+      <button class="btn btn-outline-danger mx-2 my-2">Cancel</button>
+    </div>
+  </form>
+</div>
+{% endblock content %}

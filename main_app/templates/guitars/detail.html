@@ -1,0 +1,22 @@
+{% extends 'base.html' %} 
+{% block content %}
+<div class="container row col-md-8 offset-2">
+  <h2 class="py-4">Details</h3>
+  <h4>{{ guitar.brand }}</h4>
+    <div class="">
+        <h6>{{ guitar.kind }}</h6>
+        <h6>{{ guitar.model }}</h6>
+        
+        {% if guitar.released %}
+        <h6> Released </h6>
+            {% else %} 
+            <h6>Not yet released</h6>
+        {% endif %}
+    </div>
+    <div class="d-flex justify-content-end">
+        <a class="btn btn-primary" href="{% url 'gtr_create' gtr_id  %}">Edit</a>
+        <a class="btn btn-danger" href="{% url 'gtr_delete' gtr_id  %}">Delete</a>
+        <a class="btn btn-outline-danger" href="/guitars/">Go Back</a>
+    </div>
+</div>
+{% endblock content %}

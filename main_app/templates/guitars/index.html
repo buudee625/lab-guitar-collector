@@ -1,14 +1,14 @@
 {% extends 'base.html' %} {% block content %}
-<h1>Guitar collection</h1>
+<h1 class="mx-4 my-4">Guitar collection</h1>
 
 <div class="container d-flex justify-content-center">
   {% for gtr in guitars %}
-  <div class="card mx-2" style="width: 18rem">
+  <div class="card mx-2 shadow p-3 mb-5 bg-body rounded" style="width: 18rem">
     <div class="card-body">
       <h5 class="card-title">{{ gtr.brand }}</h5>
       <h6 class="card-subtitle mb-2 text-muted">{{ gtr.kind }}</h6>
       <h6 class="card-subtitle mb-2 text-muted">{{ gtr.model }}</h6>
-      <a href="#">Details</a>
+      <a href="{% url 'detail' gtr.id %}">Details</a>
     </div>
   </div>
   {% endfor %}
