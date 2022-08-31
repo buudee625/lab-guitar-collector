@@ -4,7 +4,7 @@
   <h2 class="py-4">Details</h3>
   <h4>{{ guitar.brand }}</h4>
     <div class="">
-        <h6>{{ guitar.kind }}</h6>
+        <h6>{{ guitar.get_kind_display }}</h6>
         <h6>{{ guitar.model }}</h6>
         
         {% if guitar.released %}

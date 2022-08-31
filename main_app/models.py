@@ -5,10 +5,16 @@ from django.urls import reverse
 class Guitar(models.Model):
         
     KIND_CHOICES = (
-        ('1', 'Acoustic guitar'),
-        ('2', 'Electric guitar'),
-        ('3', 'Acoustic bass'),
-        ('4', 'Electric bass'),
+        ('AG', 'Acoustic guitar'),
+        ('EG', 'Electric guitar'),
+        ('MG', 'Multi-string guitar'),
+        ('AB', 'Acoustic bass'),
+        ('EB', 'Electric bass'),
+        ('MB', 'Multi-string bass'),
+        ('CG', 'Classical/Nylon guitar'),
+        ('AR', 'Archtop/Hollow guitar'),
+        ('RE', 'Resonator'),
+        ('SG', 'Stell guitar'),
     )
     
     brand = models.CharField(max_length=50)
@@ -19,3 +25,6 @@ class Guitar(models.Model):
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'gtr_id': self.id})
+
+    def __str__(self):
+        return f'{self.brand} - {self.model}'
