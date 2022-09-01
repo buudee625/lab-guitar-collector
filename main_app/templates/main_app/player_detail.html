@@ -30,7 +30,12 @@
       Edit
     </a>
     <a class="btn btn-danger mx-4" href="/players/">Go Back</a>
-    <a class="btn btn-outline-danger float-end" href="#">Delete</a>
+    <form action="{% url 'player_delete' player.id %}" method="POST">
+      {% csrf_token %}
+      <button class="btn btn-outline-danger float-end" type="submit">
+        Delete
+      </button>
+    </form>
   </div>
 </div>
 {% endblock %}

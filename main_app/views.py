@@ -27,16 +27,6 @@ def guitar_detail(req, gtr_id):
         'players': not_players,
         })
 
-def add_review(req, gtr_id):
-    form = ReviewForm(req.POST)
-    if form.is_valid():
-        gtr = Guitar.objects.get(id=gtr_id)
-        new_review = form.save(commit=False)
-        new_review.gtr_id = gtr_id
-        new_review.save()
-
-    return redirect('detail', gtr_id=gtr_id)
-
 def assoc_player(req, gtr_id, player_id):
     current_gtr = Guitar.objects.get(id=gtr_id)
     current_gtr.players.add(player_id)
@@ -44,9 +34,7 @@ def assoc_player(req, gtr_id, player_id):
 
 def deassoc_player(req, gtr_id, player_id):
     current_gtr = Guitar.objects.get(id=gtr_id)
-    print(current_gtr, '<---current_gtr')
     current_ply = Player.objects.get(id=player_id)
-    print(current_ply, '<---current_ply')
     current_ply.guitar_set.remove(current_gtr)
     return redirect('detail', gtr_id=gtr_id)
 
@@ -61,6 +49,15 @@ class GtrUpdate(UpdateView):
 class GtrDelete(DeleteView):
     model = Guitar
     success_url = '/guitars/'
+
+def add_review(req, gtr_id):
+    form = ReviewForm(req.POST)
+    if form.is_valid():
+        new_review = form.save(commit=False)
+        new_review.guitar_id = gtr_id
+        new_review.save()
+
+    return redirect('detail', gtr_id=gtr_id)
 
 class PlayerIndex(ListView):
     model = Player
