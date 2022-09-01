@@ -1,24 +1,24 @@
 {% extends 'base.html' %} {% block content %}
-<div class="container mt-4 col-sm-8 offset-md-2">
-  {% if object %}
-  <h2 class="py4">
-    Edit
-    <span class="text-primary">{{object.brand}}</span>
-  </h2>
-  {% else %}
-  <h2 class="py4">Add A Guitar</h2>
-  {% endif %}
-  <form action="" method="POST">
-    {% csrf_token %}
-    <table class="table">
-      <!-- Render the inputs inside of <tr>s & <td>s -->
-      {{ form.as_table }}
-    </table>
-    <div class="d-flex justify-content-end">
-      {% if object %}
-      <button class="btn btn-success mx-2 my-2" type="Submit">Edit</button>
+<div class="container">
+  <div class="col-6 offset-3">
+    {% if object %}
+    <h2 class="mx-4 my-4">
+      Edit
+      <span class="text-primary">{{object.brand}}</span>
+    </h2>
+    {% else %}
+    <h2 class="mx-4 my-4">Add A Guitar</h2>
+    {% endif %}
+  </div>
+  <div class="col-6 offset-3">
+    <div class="form-group">{{ form.as_p }}</div>
+  </div>
+  <div class="col-6 offset-3">
+    <form action="" method="POST">
+      {% csrf_token %} {% if object %}
+      <button class="btn btn-success my-2" type="Submit">Edit</button>
       <a
-        class="btn btn-outline-danger mx-2 my-2"
+        class="btn btn-outline-danger my-2"
         href="{% url 'detail' object.id %}"
       >
         Cancel
@@ -27,7 +27,7 @@
       <button class="btn btn-success mx-2 my-2" type="Submit">Add</button>
       <a class="btn btn-outline-danger mx-2 my-2" href="/guitars/">Cancel</a>
       {% endif %}
-    </div>
-  </form>
+    </form>
+  </div>
 </div>
 {% endblock content %}

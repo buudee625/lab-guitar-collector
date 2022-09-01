@@ -53,7 +53,28 @@
               <a class="nav-link" href="/guitars/">All Guitars</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'gtr_create' %}">Add A Guitar</a>
+              <a class="nav-link" href="{% url 'player_index' %}">
+                All Players
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Add
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="{% url 'gtr_create' %}">
+                    Guitar
+                  </a>
+                </li>
+                <li><a class="dropdown-item" href="#">Player</a></li>
+              </ul>
             </li>
           </ul>
         </div>

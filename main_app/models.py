@@ -8,7 +8,7 @@ from django_countries.fields import CountryField
 class Player(models.Model):
     name = models.CharField(max_length=100)
     country = CountryField(blank_label='(select country')
-    age = models.PositiveIntegerField(null=True)
+    age = models.PositiveIntegerField(blank=True)
 
     def __str__(self):
         return self.name
@@ -39,7 +39,7 @@ class Guitar(models.Model):
             MinValueValidator(1)
         ])
     released = models.BooleanField()
-    players = models.ManyToManyField(Player)
+    players = models.ManyToManyField(Player, blank=True)
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'gtr_id': self.id})

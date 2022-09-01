@@ -25,12 +25,8 @@ def guitar_detail(req, gtr_id):
 def add_review(req, gtr_id):
     form = ReviewForm(req.POST)
     if form.is_valid():
-        print('##### FUKKKKK YAAA IM INNNNNN ######')
-        print(gtr_id, '<-----------gtr_id')
         gtr = Guitar.objects.get(id=gtr_id)
-        print(gtr, '<-----------gtr')
         new_review = form.save(commit=False)
-        print(new_review, '<------------new_review')
         new_review.gtr_id = gtr_id
         new_review.save()
 
@@ -38,11 +34,11 @@ def add_review(req, gtr_id):
 
 class GtrCreate(CreateView):
     model = Guitar
-    fields = '__all__'
+    fields = ['brand', 'kind', 'model', 'string', 'released']
 
 class GtrUpdate(UpdateView):
     model = Guitar
-    fields = ['brand', 'kind', 'model', 'released']
+    fields = ['brand', 'kind', 'model', 'string', 'released']
 
 class GtrDelete(DeleteView):
     model = Guitar

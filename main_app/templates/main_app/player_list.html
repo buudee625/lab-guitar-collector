@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1 class="mx-4 my-4">Players collection</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-2 btn-group my-4">
+      <button type="button" class="btn btn-info">Sort By</button>
+      <button
+        type="button"
+        class="btn btn-info dropdown-toggle dropdown-toggle-split"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <span class="visually-hidden">Toggle Dropdown</span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Name</a></li>
+        <li><a class="dropdown-item" href="#">Country</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    {% for p in player_list %}
+    <div class="card mx-2 shadow p-3 mb-5 bg-body rounded" style="width: 18rem">
+      <div class="card-body">
+        <h5 class="card-title text-dark">{{ p.name }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">
+          {{ p.get_country_display }}
+        </h6>
+        <a href="#">Details</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock content %}
