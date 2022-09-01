@@ -16,7 +16,7 @@ class Guitar(models.Model):
         ('CG', 'Classical/Nylon guitar'),
         ('AR', 'Archtop/Hollow guitar'),
         ('RE', 'Resonator'),
-        ('SG', 'Stell guitar'),
+        ('SG', 'Steel guitar'),
     )
     
     brand = models.CharField(max_length=50)

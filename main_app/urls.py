@@ -9,4 +9,5 @@ urlpatterns = [
     path('guitars/create/', views.GtrCreate.as_view(), name='gtr_create'),
     path('guitars/<int:pk>/update/', views.GtrUpdate.as_view(), name='gtr_update'),
     path('guitars/<int:pk>/delete/', views.GtrDelete.as_view(), name='gtr_delete'),
+    path('guitars/<int:gtr_id>/add_review/', views.add_review, name='add_review'),
 ]
