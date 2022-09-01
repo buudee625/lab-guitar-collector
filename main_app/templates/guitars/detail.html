@@ -1,26 +1,26 @@
 {% extends 'base.html' %} {% block content %}
 <div class="container col-md-8 offset-2">
-  <!-- ========================================= -->
-  <!-- Details -->
-  <!-- ========================================= -->
+    <!-- ========================================= -->
+    <!-- Details -->
+    <!-- ========================================= -->
   <div class="row">
-    <h2 class="py-4">Details</h2>
-    <h4>{{ guitar.brand }}</h4>
+    <h2 class="py-4">Guitar Details</h2>
+    <h4>Brand: <span class="fw-light">{{ guitar.brand }}</span></h4>
     <div class="">
-      <h6>Type: {{ guitar.get_kind_display }}</h6>
-      <h6>Model: {{ guitar.model }}</h6>
+      <h4>Type: <span class="fw-light">{{ guitar.get_kind_display }}</span></h4>
+      <h4>Model: <span class="fw-light">{{ guitar.model }}</span></h4>
       {% if guitar.released %}
-      <h6>Released</h6>
+      <h4>Released</h4>
       {% else %}
-      <h6>Not yet released</h6>
+      <h4>Not yet released</h4>
       {% endif %}
     </div>
   </div>
   <br />
   <br />
-  <!-- ========================================= -->
-  <!-- Reviews -->
-  <!-- ========================================= -->
+    <!-- ========================================= -->
+    <!-- Reviews -->
+    <!-- ========================================= -->
   <div class="row">
     <div class="col">
       <table class="table text-light">
@@ -60,9 +60,9 @@
   <br />
   <br />
 
-  <!-- ========================================= -->
-  <!-- Buttons -->
-  <!-- ========================================= -->
+    <!-- ========================================= -->
+    <!-- Buttons -->
+    <!-- ========================================= -->
   <div class="clearfix">
     <a class="col-2 mx-2 btn btn-primary" href="{% url 'gtr_update' guitar.id  %}">
       Edit
@@ -72,5 +72,42 @@
       Delete
     </a>
   </div>
+  <hr class="my-4">
+
+    <!-- ========================================= -->
+    <!-- Players: Associated -->
+    <!-- ========================================= -->
+    <div class="row">
+        <h2>Players Who Plays:</h2>
+        <h4 class="text-info">{{ guitar.brand }} {{ guitar.model}}</h3>
+        <br /><br /><br />
+        <div class="col-6 bg-warning">    
+            {% if guitar.players.count %}
+            <div class="px-2">
+                <ul class="list-group rounded">
+                    {% for p in guitar.players.all %}
+                    <li class="list-group-item">
+                        <a href="{% url 'player_detail' p.id %}">{{ p.name }}</a>
+                        <button type="button" class="btn-close float-end"></button>
+                    </li>
+                    {% endfor %}
+                </ul>   
+            </div>
+            {% else %}
+            <p>No players have been added yet</p>
+            {% endif %}
+        </div> 
+    <!-- ========================================= -->
+    <!-- Players: Unassociated -->
+    <!-- ========================================= -->
+        <div class="col-6 bg-info">
+                Test
+        </div>
+    </div>
+
+
+
 </div>
+
+
 {% endblock content %}

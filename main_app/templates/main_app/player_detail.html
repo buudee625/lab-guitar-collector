@@ -3,24 +3,24 @@
 <div class="container">
   <br />
   <div class="col">
-    <h3>
+    <h4>
       Name:
       <span class="fw-light">{{ player.name }}</span>
-    </h3>
-    <h3>
+    </h4>
+    <h4>
       Country:
       <span class="fw-light">{{ player.get_country_display }}</span>
-    </h3>
+    </h4>
     {% if player.age == None %}
-    <h3>
+    <h4>
       Age:
       <span class="fw-light">Unknown or deceased</span>
-    </h3>
+    </h4>
     {% else %}
-    <h3>
+    <h4>
       Age:
       <span class="fw-light">{{ player.age }}</span>
-    </h3>
+    </h4>
     {% endif %}
   </div>
   <br />
