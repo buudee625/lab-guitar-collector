@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Guitar
+from .models import Guitar, Review
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 # Create your views here.

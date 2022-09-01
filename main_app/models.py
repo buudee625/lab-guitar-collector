@@ -43,3 +43,6 @@ class Review(models.Model):
         ])
     review = models.TextField(max_length=300)
     guitar = models.ForeignKey(Guitar, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.guitar} - {self.id}'

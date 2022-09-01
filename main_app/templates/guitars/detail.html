@@ -1,22 +1,56 @@
-{% extends 'base.html' %} 
-{% block content %}
-<div class="container col-md-8 offset-2">
-  <h2 class="py-4">Details</h3>
-  <h4>{{ guitar.brand }}</h4>
+{% extends 'base.html' %} {% block content %}
+<div class="container col-md-6 offset-3">
+  <div class="row">
+    <h2 class="py-4">Details</h2>
+    <h4>{{ guitar.brand }}</h4>
     <div class="">
-        <h6>{{ guitar.get_kind_display }}</h6>
-        <h6>{{ guitar.model }}</h6>
-        
-        {% if guitar.released %}
-        <h6> Released </h6>
-            {% else %} 
-            <h6>Not yet released</h6>
-        {% endif %}
+      <h6>Type: {{ guitar.get_kind_display }}</h6>
+      <h6>Model: {{ guitar.model }}</h6>
+      {% if guitar.released %}
+      <h6>Released</h6>
+      {% else %}
+      <h6>Not yet released</h6>
+      {% endif %}
     </div>
-    <div class="row my-4">
-        <a class="col-2 btn btn-outline-danger mx-2" href="/guitars/">Go Back</a>
-        <a class="col-2 btn btn-primary mx-2" href="{% url 'gtr_update' guitar.id  %}">Edit</a>
-        <a class="col-2 btn btn-danger mx-2" href="{% url 'gtr_delete' guitar.id  %}">Delete</a>
+  </div>
+  <br />
+  <br />
+  <div class="row">
+    <div class="col">
+      <table class="table">
+        <thead>
+          <tr>
+            <td><strong>Rating</strong></td>
+            <td><strong>Review</strong></td>
+            <td><strong>Date</strong></td>
+          </tr>
+        </thead>
+        {% for rev in guitar.review_set.all%}
+        <tbody>
+          <tr>
+            <td>{{rev.rating}}</td>
+            <td>{{rev.review}}</td>
+            <td>{{rev.date}}</td>
+          </tr>
+        </tbody>
+        {% endfor %}
+      </table>
     </div>
+  </div>
+  <div class="row my-4 d-flex justify-content-end">
+    <a class="col-2 btn btn-outline-danger mx-2" href="/guitars/">Go Back</a>
+    <a
+      class="col-2 btn btn-primary mx-2"
+      href="{% url 'gtr_update' guitar.id  %}"
+    >
+      Edit
+    </a>
+    <a
+      class="col-2 btn btn-danger mx-2"
+      href="{% url 'gtr_delete' guitar.id  %}"
+    >
+      Delete
+    </a>
+  </div>
 </div>
 {% endblock content %}
