@@ -19,8 +19,13 @@ def guitar_index(req):
 
 def guitar_detail(req, gtr_id):
     guitar = Guitar.objects.get(id=gtr_id)
+    not_players = Player.objects.exclude(id__in = guitar.players.all().values_list('id'))
     review_form = ReviewForm()
-    return render(req, 'guitars/detail.html', {'guitar': guitar, 'review_form': review_form})
+    return render(req, 'guitars/detail.html', {
+        'guitar': guitar,
+        'review_form': review_form,
+        'players': not_players,
+        })
 
 def add_review(req, gtr_id):
     form = ReviewForm(req.POST)
@@ -30,6 +35,19 @@ def add_review(req, gtr_id):
         new_review.gtr_id = gtr_id
         new_review.save()
 
+    return redirect('detail', gtr_id=gtr_id)
+
+def assoc_player(req, gtr_id, player_id):
+    current_gtr = Guitar.objects.get(id=gtr_id)
+    current_gtr.players.add(player_id)
+    return redirect('detail', gtr_id=gtr_id)
+
+def deassoc_player(req, gtr_id, player_id):
+    current_gtr = Guitar.objects.get(id=gtr_id)
+    print(current_gtr, '<---current_gtr')
+    current_ply = Player.objects.get(id=player_id)
+    print(current_ply, '<---current_ply')
+    current_ply.guitar_set.remove(current_gtr)
     return redirect('detail', gtr_id=gtr_id)
 
 class GtrCreate(CreateView):

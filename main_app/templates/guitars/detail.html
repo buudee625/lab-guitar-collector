@@ -81,32 +81,42 @@
         <h2>Players Who Plays:</h2>
         <h4 class="text-info">{{ guitar.brand }} {{ guitar.model}}</h3>
         <br /><br /><br />
-        <div class="col-6 bg-warning">    
+        <div class="col-6">    
             {% if guitar.players.count %}
             <div class="px-2">
                 <ul class="list-group rounded">
                     {% for p in guitar.players.all %}
                     <li class="list-group-item">
+                        <form action="{% url 'deassoc_player' guitar.id p.id %}" method="POST">
+                        {% csrf_token %}
                         <a href="{% url 'player_detail' p.id %}">{{ p.name }}</a>
-                        <button type="button" class="btn-close float-end"></button>
+                        <button type="submit" class="btn btn-danger float-end">x</button>
+                        </form>
                     </li>
                     {% endfor %}
                 </ul>   
             </div>
             {% else %}
-            <p>No players have been added yet</p>
+            <p>No one plays this model?</p>
             {% endif %}
         </div> 
     <!-- ========================================= -->
     <!-- Players: Unassociated -->
     <!-- ========================================= -->
-        <div class="col-6 bg-info">
-                Test
+        <div class="col-6">
+            <ul class="list-group rounded">
+                {% for p in players %}
+                <li class="list-group-item ">
+                    <form action="{% url 'assoc_player' guitar.id p.id %}" method="POST">
+                    {% csrf_token %}
+                    {{ p.name }}
+                    <button type="submit" class="btn btn-danger float-end">+</button>
+                    </form> 
+                </li>
+                {% endfor %} 
+            </ul>        
         </div>
     </div>
-
-
-
 </div>
 
 

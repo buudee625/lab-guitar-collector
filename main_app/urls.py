@@ -11,6 +11,8 @@ urlpatterns = [
     path('guitars/<int:pk>/update/', views.GtrUpdate.as_view(), name='gtr_update'),
     path('guitars/<int:pk>/delete/', views.GtrDelete.as_view(), name='gtr_delete'),
     path('guitars/<int:gtr_id>/add_review/', views.add_review, name='add_review'),
+    path('guitars/<int:gtr_id>/assoc_player/<int:player_id>/', views.assoc_player, name='assoc_player'),
+    path('guitars/<int:gtr_id>/deassoc_player/<int:player_id>/', views.deassoc_player, name='deassoc_player'),
     # Players
     path('players/', views.PlayerIndex.as_view(), name='player_index'),
     path('players/<int:pk>/', views.PlayerDetail.as_view(), name='player_detail'),
