@@ -49,3 +49,15 @@ class PlayerIndex(ListView):
 
 class PlayerDetail(DetailView):
     model = Player
+
+class PlayerCreate(CreateView):
+    model = Player
+    fields = '__all__'
+
+class PlayerUpdate(UpdateView):
+    model = Player
+    fields = ['name', 'country', 'age']
+
+class PlayerDelete(DeleteView):
+    model = Player
+    success_url = '/players/'

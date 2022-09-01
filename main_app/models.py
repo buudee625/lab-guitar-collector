@@ -8,7 +8,7 @@ from django_countries.fields import CountryField
 class Player(models.Model):
     name = models.CharField(max_length=100)
     country = CountryField(blank_label='(select country')
-    age = models.PositiveIntegerField(blank=True)
+    age = models.PositiveIntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.name

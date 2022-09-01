@@ -3,6 +3,9 @@
 <h1 class="mx-4 my-4">Players collection</h1>
 
 <div class="container">
+  <!-- ============================ -->
+  <!-- Sort button, non-functional -->
+  <!-- ============================ -->
   <div class="row">
     <div class="col-2 btn-group my-4">
       <button type="button" class="btn btn-info">Sort By</button>
@@ -20,6 +23,9 @@
       </ul>
     </div>
   </div>
+  <!-- ============================ -->
+  <!-- Player cards -->
+  <!-- ============================ -->
   <div class="row">
     {% for p in player_list %}
     <div class="card mx-2 shadow p-3 mb-5 bg-body rounded" style="width: 18rem">
@@ -28,7 +34,7 @@
         <h6 class="card-subtitle mb-2 text-muted">
           {{ p.get_country_display }}
         </h6>
-        <a href="#">Details</a>
+        <a href="{% url 'player_detail' p.id %}">Details</a>
       </div>
     </div>
     {% endfor %}

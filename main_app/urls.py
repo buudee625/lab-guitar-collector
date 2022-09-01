@@ -14,4 +14,7 @@ urlpatterns = [
     # Players
     path('players/', views.PlayerIndex.as_view(), name='player_index'),
     path('players/<int:pk>/', views.PlayerDetail.as_view(), name='player_detail'),
+    path('players/create/', views.PlayerCreate.as_view(), name='player_create'),
+    path('players/<int:pk>/update/', views.PlayerUpdate.as_view(), name='player_update'),
+    path('players/<int:pk>/delete/', views.PlayerDelete.as_view(), name='player_delete'),
 ]
