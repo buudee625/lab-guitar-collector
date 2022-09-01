@@ -17,7 +17,7 @@
       crossorigin="anonymous"
     ></script>
   </head>
-  <body>
+  <body class="bg-dark text-light" style="margin-bottom: 120px">
     <nav class="navbar navbar-expand-lg bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">
@@ -47,10 +47,10 @@
               <a class="nav-link active" aria-current="page" href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/guitars/">Guitars</a>
+              <a class="nav-link" href="/about/">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/about/">About</a>
+              <a class="nav-link" href="/guitars/">All Guitars</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'gtr_create' %}">Add A Guitar</a>
@@ -61,7 +61,7 @@
     </nav>
     {% block content %} {% endblock %}
 
-    <footer class="footer fixed-bottom bg-light mt-auto py-3">
+    <footer class="footer fixed-bottom mt-auto py-3 text-dark bg-light">
       <div class="d-flex justify-content-end">
         All Rights Reserved, &copy; 2022 Guitar Collector &nbsp;
       </div>

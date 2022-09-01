@@ -36,11 +36,16 @@ class Guitar(models.Model):
 
 
 class Review(models.Model):
+    RATING_CHOICES = (
+        ('1','1'),
+        ('2','2'),
+        ('3','3'),
+        ('4','4'),
+        ('5','5'),
+    )
+
     date = models.DateField(auto_now_add=True)
-    rating = models.PositiveIntegerField(default=5, validators=[
-            MaxValueValidator(5),
-            MinValueValidator(1)
-        ])
+    rating = models.CharField(max_length=1, choices=RATING_CHOICES)
     review = models.TextField(max_length=300)
     guitar = models.ForeignKey(Guitar, on_delete=models.CASCADE)
 

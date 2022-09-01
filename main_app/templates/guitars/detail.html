@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block content %}
-<div class="container col-md-6 offset-3">
+<div class="container col-md-8 offset-2">
   <!-- ========================================= -->
   <!-- Details -->
   <!-- ========================================= -->
@@ -23,7 +23,7 @@
   <!-- ========================================= -->
   <div class="row">
     <div class="col">
-      <table class="table">
+      <table class="table text-light">
         <thead>
           <tr>
             <td><strong>Rating</strong></td>
@@ -31,7 +31,7 @@
             <td><strong>Date</strong></td>
           </tr>
         </thead>
-        {% for rev in guitar.review_set.all%}
+        {% if guitar.review_set.count %} {% for rev in guitar.review_set.all%}
         <tbody>
           <tr>
             <td>{{rev.rating}}</td>
@@ -40,28 +40,36 @@
           </tr>
         </tbody>
         {% endfor %}
+        </table>
+        {% else %}
       </table>
+      <p>Tell us what you think about this axe!</p>
+      {% endif %}
+    </div>
+    <div class="col form-group">
+      <form action="{% url 'add_review' guitar.id %}" method="POST">
+        {% csrf_token %} {{review_form.as_p}}
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-outline-primary" type="submit">
+            Add A Review
+            </button>
+        </div>
+      </form>
     </div>
   </div>
-  <div class="col">
-    <form action="">{% csrf_token %} {{review_form.as_p}}</form>
-  </div>
+  <br />
+  <br />
+
   <!-- ========================================= -->
   <!-- Buttons -->
   <!-- ========================================= -->
-  <div class="row my-4 d-flex justify-content-end">
-    <a class="col-2 btn btn-outline-danger mx-2" href="/guitars/">Go Back</a>
-    <a
-      class="col-2 btn btn-primary mx-2"
-      href="{% url 'gtr_update' guitar.id  %}"
-    >
-      Edit
+  <div class="clearfix">
+    <a class="col-2 mx-2 btn btn-danger" href="/guitars/">Go Back</a>
+    <a class="col-2 mx-2 btn btn-primary" href="{% url 'gtr_update' guitar.id  %}">
+      Edit Guitar
     </a>
-    <a
-      class="col-2 btn btn-danger mx-2"
-      href="{% url 'gtr_delete' guitar.id  %}"
-    >
-      Delete
+    <a class="col-2 btn btn-outline-danger float-end" href="{% url 'gtr_delete' guitar.id  %}">
+      Delete Guitar
     </a>
   </div>
 </div>

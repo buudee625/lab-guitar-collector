@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
@@ -25,10 +25,15 @@ def guitar_detail(req, gtr_id):
 def add_review(req, gtr_id):
     form = ReviewForm(req.POST)
     if form.is_valid():
+        print('##### FUKKKKK YAAA IM INNNNNN ######')
+        print(gtr_id, '<-----------gtr_id')
+        gtr = Guitar.objects.get(id=gtr_id)
+        print(gtr, '<-----------gtr')
         new_review = form.save(commit=False)
+        print(new_review, '<------------new_review')
         new_review.gtr_id = gtr_id
         new_review.save()
-    
+
     return redirect('detail', gtr_id=gtr_id)
 
 class GtrCreate(CreateView):
