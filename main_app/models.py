@@ -1,8 +1,20 @@
 from django.db import models
 from django.urls import reverse
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django_countries.fields import CountryField
 
 # Create your models here.
+
+class Player(models.Model):
+    name = models.CharField(max_length=100)
+    country = CountryField(blank_label='(select country')
+    age = models.PositiveIntegerField(null=True)
+
+    def __str__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return reverse('player_detail', kwarg={'pk': self.id})
 
 class Guitar(models.Model):
         
@@ -27,6 +39,7 @@ class Guitar(models.Model):
             MinValueValidator(1)
         ])
     released = models.BooleanField()
+    players = models.ManyToManyField(Player)
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'gtr_id': self.id})

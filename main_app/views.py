@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from .models import Guitar, Review
+from .models import Guitar, Review, Player
 from .forms import ReviewForm
 # Create your views here.
 from django.http import HttpResponse
@@ -47,3 +47,9 @@ class GtrUpdate(UpdateView):
 class GtrDelete(DeleteView):
     model = Guitar
     success_url = '/guitars/'
+
+class PlayerIndex(ListView):
+    model = Player
+
+class PlayerDetail(DetailView):
+    model = Player
